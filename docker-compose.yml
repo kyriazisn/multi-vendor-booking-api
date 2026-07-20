@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres:16
-    container_name: poptop_postgres
     restart: always
     environment:
       POSTGRES_DB: booking_platform
@@ -14,14 +13,13 @@ services:
 
   web:
     build: .
-    container_name: booking_web
     restart: always
     command: python manage.py runserver 0.0.0.0:8000
     environment:
       DJANGO_SETTINGS_MODULE: config.settings.local
       DB_NAME: booking_platform
       DB_USER: admin
-      DB_PASSWORD: admin_password
+      DB_PASSWORD: 12345
       DB_HOST: db
       DB_PORT: 5432
     depends_on:
